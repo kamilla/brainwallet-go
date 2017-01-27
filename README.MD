@@ -68,7 +68,7 @@ If you want to rebuild brainwallet from sources, just run "go get github.com/kam
 
 # Licensing
 
-This software is licensed under [MIT license](LICENSE.MD).  
+This software is licensed under [MIT license](LICENSE).  
 Copyright (c) 2017 Kamilla Productions Uninc.
 
 # Cryptographic Software Notice
