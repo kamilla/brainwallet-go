@@ -1,33 +1,17 @@
- About
- -----
+# About
 
- This is a bitcoin brainwallet address generator library package for golang. It can be used to masscreate brainwallet bitcoin addresses.
- It uses Optimized C library for EC operations on curve secp256k1 and base58 encoding library extracted from btcutil. Generator is
- designed to be fast and efficient.
+This is a bitcoin brainwallet address generator library package for golang. It can be used to masscreate brainwallet bitcoin addresses. It uses Optimized C library for EC operations on curve secp256k1 and base58 encoding library extracted from btcutil. Generator is designed to be fast and efficient.
 
+# Generation Process
 
- # Generation Process
+Passphrase -> ECDSA Private Key -> ECDSA Public Key
 
-
-	func:		SHA256					UncompressedPubkeyFromSeckey
-	lib:		crypto/sha256				github.com/haltingstate/secp256k1-go
- ------------------------------------------------------------------------------------------------------
- Passphrase		->		ECDSA Private Key	-> 	ECDSA Public Key	
-
-
-
-
- SHA256			RIPEMD160			Add version byte		
- crypto/sha256		golang.org/x/crypto/ripemd160	(0x00 for Main Network)		
- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
- ->		Hash	-> 		Hash		->		Extended Hash									Base58Check encoding
-												Concatenate						github.com/jbenet/go-base58
- SHA256			SHA256				Crop 4 first bytes			->		25-Byte Binary Bitcoin Address		->		Base58 Encoded Bitcoin Address
- crypto/sha256		crypto/sha256										------------------------------				------------------------------
- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
- ->		Hash	-> 		Hash		->		Address Checksum	
-
-
+  |  |  |  |  | | | |  |  |  |  |  |  |  |  |
+:-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-:
+  |  |  |  |  | ↱ | SHA256<br/>→<br/>*crypto/sha256* | **Hash** | RIPEMD160<br/>→<br/>*golang.org/x/crypto/ripemd160* | **Hash** | Add version byte<br/>→<br/>*(0x00 for Main Network)* | **Extented Hash** | ⬎ | |  |  |  |
+**Passphrase** | → | SHA256<br/>→<br/>*crypto/sha256* | **ECDSA Private Key** | UncompressedPubkeyFromSeckey<br/>→<br/>*github.com/haltingstate/secp256k1-go* | **ECDSA Public Key** |  |  |  |  |  |  | ↓<br/>Concatenate→<br/>↑ | **25-Byte Binary Bitcoin Address** | Base58Check encoding<br/>→<br/>*github.com/jbenet/go-base58* | **Base58 Encoded Bitcoin Address**
+  |  |  |  |  | ↳ | SHA256<br/>→<br/>*crypto/sha256* | **Hash** | SHA256<br/>→<br/>*crypto/sha256* | **Hash** | Crop 4 first bytes<br/>→<br/> | **Address Checksum** | ⬏ | |  |  |  |
+  |  |  |  |  | | | |  |  |  |  |  | |  |  | 
 
 
  Usage
