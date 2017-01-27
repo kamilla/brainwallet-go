@@ -59,7 +59,7 @@ brainwallet/ |  |
 
 # Installation
 
-Please see [INSTALL](INSTALL.MD).
+Please see [INSTALL](INSTALL.md).
 
 # Updating from Sources
  ---------------------
