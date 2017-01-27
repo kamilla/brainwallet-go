@@ -22,7 +22,7 @@ Use it at your own risk! Mainly used in development purposes, it is preferred to
 
 \# Steps 
 
-**\#1** Install Golang and dependencies (libgmp-dev) \n  
+**\#1** Install Golang and dependencies (libgmp-dev)  
 **\#2** Declare environment variables (GOROOT, GOPATH, PATH)  
 **\#3** Use 'go get' and/or 'go build' to automatically download dependencies and compile the brainwallet  
 
