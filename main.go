@@ -5,7 +5,7 @@
 package main
 
 import (
-	"kamillaproductions.com/brainwallet-go/brainwallet"
+	"brainwallet"
 	"flag"
 	"sync"
 	"time"
